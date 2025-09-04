@@ -18,7 +18,7 @@ nvm use 18
 echo "nvm use 18" >> ~/.bashrc
 cd /workspace
 
-npm i yarn
+npm install -g yarn
 
 bench init \
 --ignore-exist \
