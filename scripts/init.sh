@@ -11,11 +11,11 @@ fi
 rm -rf /workspaces/frappe_codespace/.git
 
 source /home/frappe/.nvm/nvm.sh
-nvm install 22
-nvm alias default 22
-nvm use 22
+nvm install 24
+nvm alias default 24
+nvm use 24
 
-echo "nvm use 22" >> ~/.bashrc
+echo "nvm use 24" >> ~/.bashrc
 cd /workspace
 
 npm install -g yarn
