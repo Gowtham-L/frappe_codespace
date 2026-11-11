@@ -28,6 +28,7 @@ cd /workspace
 npm install -g yarn
 
 bench init \
+--frappe-branch version-16 \
 --ignore-exist \
 --skip-redis-config-generation \
 frappe-bench
@@ -42,6 +43,10 @@ bench set-redis-socketio-host "redis://redis-queue:6379"
 
 # Remove redis from Procfile
 sed -i '/redis/d' ./Procfile
+
+# Don't run the asset watcher with bench start (it runs out of memory on a 2-core Codespace)
+# Run `bench build` after changing JS/CSS instead.
+sed -i 's/^watch:/# watch:/' ./Procfile
 
 bench new-site dev.localhost \
 --db-root-username root \
