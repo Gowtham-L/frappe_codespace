@@ -1,14 +1,21 @@
-#!bin/bash
+#!/bin/bash
 
 set -e
 
-if [[ -f "/workspaces/frappe_codespace/frappe-bench/apps/frappe" ]]
+if [[ -d "/workspace/frappe-bench/apps/frappe" ]]
 then
     echo "Bench already exists, skipping init"
     exit 0
 fi
 
 rm -rf /workspaces/frappe_codespace/.git
+
+# Newer frappe/bench images ship a MariaDB client that requires SSL by default.
+# The dev DB container has no TLS setup, so tell the client not to use SSL.
+cat > ~/.my.cnf <<'MYCNF'
+[client]
+skip-ssl
+MYCNF
 
 source /home/frappe/.nvm/nvm.sh
 nvm install 24
